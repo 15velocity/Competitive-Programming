@@ -1,0 +1,31 @@
+#include<iostream>
+#include<math.h>
+using namespace std;
+
+int main()
+{
+    long long tc,n;
+    cin>>tc;
+    for(long long i=1;i<=tc;i++)
+    {
+        cin>>n;
+        if(n==1)
+        {
+            cout<<0<<endl;
+        }
+        else
+        {
+            long long s=0;
+            for(int k=2;k<=sqrt(n);k++)
+            {
+                if(n%k==0)
+                {
+                    s+=k;
+                    if(n/k!=k)                  
+                    s+=n/k;                     
+                }
+            }
+            cout<<s+1<<endl;
+        }
+    }
+}
