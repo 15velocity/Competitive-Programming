@@ -1,0 +1,79 @@
+#include<iostream>
+#include<cmath>
+
+using namespace std;
+
+struct circle
+{
+	float x,y,r;
+	int parent;
+}c[101];
+
+bool intersect(circle a,circle b)
+{
+	float d=pow(a.x-b.x,2)+pow(a.y-b.y,2);
+	if(d<pow(a.r+b.r,2) && d> pow(a.r-b.r,2))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}	
+}
+
+int find(int x)
+{
+	if(c[x].parent<=-1)
+		return x;
+	else 
+		return find(c[x].parent);
+		
+}
+
+void Union(int u,int v)
+{
+	if(find(u) < find(v))
+	{
+		c[find(u)].parent+=c[find(v)].parent;
+		c[find(v)].parent=find(u);
+	}
+	else
+	{
+		c[find(v)].parent+=c[find(u)].parent;
+		c[find(u)].parent=find(v);
+	}
+}
+
+
+int main()
+{
+	int n,max;
+	cin>>n;
+	while(n!=-1)
+	{
+		max=0;
+		for(int i=1;i<=n;i++)
+		{
+			cin>>c[i].x>>c[i].y>>c[i].r;
+			c[i].parent=-1;
+		}
+		for(int i=1;i<=n;i++)
+		{
+			for(int j=i+1;j<=n;j++)
+			{
+				if(intersect(c[i],c[j]))
+					if((find(i)!=find(j)) && find(i) != -1)
+						Union(i,j);		
+			}
+		}
+		for(int i=1;i<=n;i++)
+		{
+			if(c[i].parent<max)
+				max=c[i].parent;
+		}
+		if(max!= -1) printf("The largest component contains %d rings.\n",max*-1);
+		else printf("The largest component contains 1 ring.\n");
+		cin>>n;
+	}
+}
