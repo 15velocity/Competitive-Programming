@@ -1,0 +1,43 @@
+#include<iostream>
+#include<queue>
+#include<algorithm>
+
+using namespace std;
+
+int main()
+{
+	queue<int> Q[2];
+	int tc,l,m,tcl,count,i,temp;
+	string lr;
+	cin>>tc;
+	while(tc--)
+	{
+		count=0;
+		cin>>l>>m;
+		l*=100;
+		for(int j=0;j<m;j++)
+		{
+			cin>>temp>>lr;
+			if(lr=="left")
+				Q[0].push(temp);
+			else
+				Q[1].push(temp);	
+		}
+		i=0;
+		while(!Q[0].empty() || !Q[1].empty())
+		{	
+			tcl=0;
+			while(!Q[i].empty())
+			{
+				tcl+=Q[i].front();
+				if(tcl>l)
+					break;
+				
+				Q[i].pop();
+			}
+			count++;
+			i=(i+1)%2;		
+		}
+		cout<<count<<endl;
+	}
+}
