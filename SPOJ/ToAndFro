@@ -1,0 +1,38 @@
+#include<iostream>
+#include<string.h>
+#include<stdio.h>
+using namespace std;
+
+int main()
+{
+    char a[200],t;
+    int c,i,len,m,row,col;
+
+ while(1)
+ { 
+    cin>>col;
+    if(col==0)
+    {break;}
+    cin>>a;
+    len=strlen(a);
+    row=len/col;
+    for(c=col,i=1;c<len;i+=2,c=col*i)        
+    {                                        
+        for(int j=0;j<col/2;j++)
+        {
+            t=a[c+j];
+            a[c+j]=a[c+col-1-j];
+            a[col+c-1-j]=t;
+        }
+    }
+
+    for(m=0;m<col;m++)          //print array column wise
+    {
+        for(int n=m;n<row*col;n=n+col)
+        {
+            cout<<a[n];
+        }
+    }
+    cout<<endl;
+  }
+}
