@@ -1,0 +1,36 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+    int tc,num;
+    cin>>tc;
+    for(int j=1;j<=tc;j++)
+    {
+        cin>>num;
+        int i,carry=0,a[200]={1},x=2,siz=0;
+        for(int x=2;x<=num;x++)
+        {
+			printf(" _*carry %d*",carry);
+            for(i=0;i<=siz;i++)
+            {
+                carry=carry+a[i]*x;
+                a[i]=carry%10;
+                carry=carry/10;
+            }
+
+            while(carry)
+            {
+                a[i++]=carry%10;
+                carry=carry/10;
+                siz++;
+            }
+        }
+        for(i=siz;i>=0;i--)
+        {
+            cout<<a[i];
+        }
+        cout<<endl;
+    }
+}
