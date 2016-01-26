@@ -1,0 +1,37 @@
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+    int a[10000],nc;
+    long long avg,step;
+    while(1)
+    {
+        cin>>nc;
+        if(nc==-1)
+        {break;}
+        avg=0;
+        step=0;
+        for(int i=0;i<nc;i++)
+        {
+            cin>>a[i];
+            avg+=a[i];
+        }
+
+        if(avg%nc==0)
+        {
+            avg=avg/nc;
+            for(int i=0;i<nc;i++)
+            {
+                if(avg>a[i])
+                {
+                    step+=avg-a[i];
+                }
+            }
+            cout<<step<<endl;
+        }
+        else
+        cout<<-1<<endl;
+    }
+}
