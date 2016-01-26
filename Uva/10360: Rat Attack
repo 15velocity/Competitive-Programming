@@ -1,0 +1,55 @@
+#include<iostream>
+#include<cstdio>		//printf
+
+using namespace std;
+
+int a[1025][1025],d;
+
+void place(int x,int y,int i)
+{
+	int m,n;
+	m= x-d >=0? x-d : 0;
+	n= y-d >=0? y-d : 0;
+	for(int p=m;p<= x+d && p<=1024;p++)
+	{
+		for(int q=n;q<= y+d && q<=1024;q++)
+		{
+			a[p][q]+=i;
+		}
+	}
+}
+
+int main()
+{
+	int tc,n,x,y,i,max,ox,oy;
+	cin>>tc;
+	while(tc--)
+	{
+		max=0;
+		for(int j=0;j<=1024;j++)
+		{
+			for(int k=0;k<=1024;k++)
+				a[j][k]=0;
+		}
+		cin>>d>>n;
+		while(n--)
+		{
+			cin>>x>>y>>i;
+			place(x,y,i);
+		}
+		for(int p=0;p<=1024;p++)
+		{
+			for(int q=0;q<=1024;q++)
+			{
+				if(a[p][q]>max)
+				{
+					max=a[p][q];
+					ox=p;oy=q;	
+				}	
+			}
+		}
+		printf("%d %d %d",ox,oy,max);
+//		if(tc!=0)
+			cout<<endl;
+	}	
+}
