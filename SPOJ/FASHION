@@ -1,0 +1,55 @@
+#include<iostream>
+
+using namespace std;
+
+void sort(int *hl, int num)
+{
+    int i,j,key;
+    for(i=1;i<num;i++)
+    {
+        j=i-1;
+        key=hl[i];
+        while((j>=0)&&(hl[j]>key))
+        {
+            hl[j+1]=hl[j];
+            j--;
+        }
+        hl[j+1]=key;
+    }
+
+}
+
+int hotsum(int n)
+{
+    int hlm[1000],sum=0,hlw[1000];
+    for(int j=0;j<n;j++)
+    {
+        cin>>hlm[j];
+    }
+    for(int j=0;j<n;j++)
+    {
+        cin>>hlw[j];
+    }
+    sort(hlm,n);
+    sort(hlw,n);
+    for(int j=0;j<n;j++)
+    {
+
+        sum+=(hlm[j]*hlw[j]);
+    }
+    return sum;
+}
+
+int main()
+{
+    int tc,n;
+    cin>>tc;
+    for(int i=0;i<tc;i++)
+    {
+        cin>>n;
+
+        cout<<hotsum(n)<<endl;
+    }
+        
+
+}
