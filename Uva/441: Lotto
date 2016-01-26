@@ -1,0 +1,41 @@
+#include<iostream>
+#include<cstdio>
+
+using namespace std;
+
+int main()
+{
+	int n,x[50],s[50];
+	cin>>n;
+	while(n!=0)
+	{
+		for(int i=1;i<=n;i++)				
+		{
+			cin>>s[i];
+		}
+		for(int i=1;i<=n-5;i++)				// i<=n will also work
+		{
+			for(int j=i+1;j<=n-4;j++)			// j<=n will also work
+			{
+				for(int k=j+1;k<=n-3;k++)			// k<=n will also work
+				{
+					for(int l=k+1;l<=n-2;l++)			// l<=n-2 is used to make the algo faster
+					{
+						for(int m=l+1;m<=n-1;m++)
+						{	
+							for(int p=m+1;p<=n;p++)
+							{
+								printf("%d %d %d %d %d %d\n",s[i],s[j],s[k],s[l],s[m],s[p]);
+							}
+						}
+					}	
+				}
+			}
+		}
+		cin>>n;
+		if(n!=0)
+		{
+			cout<<endl;
+		}
+	}
+}
