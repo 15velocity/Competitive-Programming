@@ -1,0 +1,32 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+int rev(int a)
+{
+    int r=0,b,len=0,orig=a;
+    while(a>0)
+        {
+             a/=10;
+             len++;
+        }
+    while(len>0)
+        {
+                r+= (orig%10)*pow(10,len-1);
+                orig/=10;
+                len--;
+        }
+        return r;
+}
+int main()
+{
+    int re,nt;
+    cin>>nt;                   // number of test case
+    for(int i=1;i<=nt;i++)
+    {
+        int n1,n2,sum;
+        cin>>n1>>n2;
+        sum=rev(n1)+rev(n2);
+        cout<<rev(sum)<<endl;
+    }
+return 0;
+}
