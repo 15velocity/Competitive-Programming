@@ -1,0 +1,83 @@
+#include<iostream>
+#include<map>
+#include<cstdio>
+using namespace std;
+
+int check(long long temp, int ck)
+{
+	long long a[10]={0},flag=1,count=0;
+	while(temp)
+	{
+		a[temp%10]+=1;
+		temp/=10;
+		count++;								
+	}
+	if(count<10 && !ck)
+		return 0;
+	if(count<4 && ck)
+		return 0;	
+	for(int x=0;x<=9;x++)
+	{
+		if(a[x]>=2)
+		flag=0;							
+	}
+	if(flag)
+		return 1;
+	else
+		return 0;	
+}
+
+int main()
+{
+	long long n,t,c;
+	map<int,int> p;
+	map<int,int> :: iterator it;
+	
+	cin>>n;
+	while(n)
+	{
+		int fl=1;
+		p.clear();
+		for(int i=0;i<=9;i++)
+		{
+			for(int j=0;j<=9;j++)
+			{
+				for(int k=0;k<=9;k++)
+				{	
+					for(int l=0;l<=9;l++)
+					{	
+						for(int m=0;m<=9;m++)
+						{
+								
+							t=i*10000 + j*1000+ k*100 + l*10 + m;					
+
+							if(check(t,1))					
+							{
+								c=n*t;
+								if(check(c*100000+t , 0))		
+								{
+									fl=0;
+									p[c]=t;
+								}
+							}
+						}	
+					}	
+				}	
+			}
+		}
+		for(it=p.begin();it!=p.end();it++)
+		{
+			if((*it).second<=9999)
+				cout<<(*it).first<<" / 0"<<(*it).second<<" = "<<n<<endl;
+			else
+				cout<<(*it).first<<" / "<<(*it).second<<" = "<<n<<endl;	
+		}
+		
+		if(fl)
+			printf("There are no solutions for %d.\n",n);
+		cin>>n;
+		
+		if(n!=0)
+			cout<<endl;
+	}
+}
