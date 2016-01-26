@@ -1,0 +1,19 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+int main()
+{
+    int tc;
+    cin>>tc;
+    for(int i=1;i<=tc;i++)
+        {
+            int n,tzero=0,k=1;
+            cin>>n;
+            while((n/pow(5,k))>0)
+                {
+                    tzero+=(n/pow(5,k));
+                    k++;
+                }
+            cout<<tzero<<endl;
+        }
+}
