@@ -12,7 +12,6 @@ int main()
         int i,carry=0,a[200]={1},x=2,siz=0;
         for(int x=2;x<=num;x++)
         {
-			printf(" _*carry %d*",carry);
             for(i=0;i<=siz;i++)
             {
                 carry=carry+a[i]*x;
