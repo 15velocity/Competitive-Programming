@@ -1,0 +1,80 @@
+#include<iostream>
+#include<stack>
+#include<string>
+#include<algorithm>
+#include<cstring>
+
+using namespace std;
+
+int main()
+{
+	int n;
+	string s,out;
+	stack<char> stk1,stk2;
+	cin>>n;
+	getchar();
+	while(n--)
+	{
+		while(!stk1.empty())
+			stk1.pop();
+		while(!stk2.empty())
+			stk2.pop();
+		out="";
+		cin>>s;
+		s='('+s+')';
+		for(int i=0; i<s.length(); i++)
+		{
+			if(s[i]=='+' || s[i]=='-' || s[i]=='*' || s[i]=='/' || s[i]=='^' )
+			{
+				if(s[i]=='/' || s[i]=='*')
+				{
+					if(stk2.top()=='*' || stk2.top()=='/' || stk2.top()=='^')
+					{
+						out+=stk2.top();
+						stk2.pop();
+						stk2.push(s[i]);
+					}
+					else
+						stk2.push(s[i]);	
+				}
+				else if(s[i]=='^')
+				{
+					if(stk2.top()=='(')
+						stk2.push(s[i]);	
+					else
+					{	
+						out+=stk2.top();
+						stk2.pop();
+						stk2.push(s[i]);	
+					}
+				}	
+				else
+				{
+					while(stk2.top()!='(')
+					{
+						out+=stk2.top();
+						stk2.pop();
+					}
+					stk2.push(s[i]);
+				}	
+			}
+			else if(s[i]=='(' || s[i]==')')
+			{
+				if(s[i]=='(')
+					stk2.push(s[i]);
+				else
+				{
+					while(stk2.top()!='(' && !stk2.empty())
+					{
+						out+=stk2.top();
+						stk2.pop();	
+					}
+					stk2.pop();	
+				}	
+			}
+			else
+				out+=s[i];
+		}
+		cout<<out<<endl;
+	}
+}
