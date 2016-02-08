@@ -1,0 +1,25 @@
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+int main()
+{
+	int tc,a,l;
+	long long b;
+	string p[10]={"0","1","6248","1397","64","5","6","1793","6842","19"};
+	cin>>tc;
+	
+	while(tc--)
+	{
+		cin>>a>>b;
+		if(b==0)
+		{
+			cout<<1<<endl;
+			continue;
+		}
+		a=a%10;
+		l=b%(p[a].size());
+		cout<<p[a][l]-'0'<<endl;	
+	}
+}
